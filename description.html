@@ -1,0 +1,1749 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>description.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<p>Understood! Since your application does not require authentication and users are entirely anonymous, we'll simplify the backend architecture accordingly. The primary focus will be on managing <strong>Rooms</strong>, <strong>Poll Responses</strong>, and <strong>Food Items</strong>. The <strong>creator</strong> of a room will be identified using a <strong>UUID token</strong>, which will be generated upon room creation. This token will be required to close the room and retrieve the aggregated results.</p>
+<p>Below is a comprehensive backend plan tailored to your updated requirements using <strong>Spring Boot</strong>.</p>
+<hr>
+<h2 id="1-updated-project-structure"><strong>1. Updated Project Structure</strong></h2>
+<p>Organizing your project effectively is crucial for maintainability and scalability. Here's a recommended folder structure using Maven:</p>
+<pre class="hljs"><code><div>your-project/
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   │   └── com/
+│   │   │       └── yourdomain/
+│   │   │           └── yourproject/
+│   │   │               ├── YourProjectApplication.java
+│   │   │               ├── config/
+│   │   │               ├── controller/
+│   │   │               │   ├── RoomController.java
+│   │   │               │   └── PollController.java
+│   │   │               ├── dto/
+│   │   │               │   ├── RoomDTO.java
+│   │   │               │   └── PollResponseDTO.java
+│   │   │               ├── exception/
+│   │   │               │   ├── ResourceNotFoundException.java
+│   │   │               │   └── GlobalExceptionHandler.java
+│   │   │               ├── model/
+│   │   │               │   ├── Room.java
+│   │   │               │   ├── PollResponse.java
+│   │   │               │   └── FoodItem.java
+│   │   │               ├── repository/
+│   │   │               │   ├── RoomRepository.java
+│   │   │               │   ├── PollResponseRepository.java
+│   │   │               │   └── FoodItemRepository.java
+│   │   │               ├── service/
+│   │   │               │   ├── RoomService.java
+│   │   │               │   └── PollService.java
+│   │   │               └── util/
+│   │   │                   └── MapperUtil.java
+│   │   └── resources/
+│   │       ├── application.properties
+│   │       └── data.sql
+│   └── test/
+│       └── java/
+│           └── com/
+│               └── yourdomain/
+│                   └── yourproject/
+│                       └── YourProjectApplicationTests.java
+├── pom.xml
+└── README.md
+</div></code></pre>
+<hr>
+<h2 id="2-detailed-file-breakdown"><strong>2. Detailed File Breakdown</strong></h2>
+<h3 id="21-main-application"><strong>2.1. Main Application</strong></h3>
+<ul>
+<li><strong><code>YourProjectApplication.java</code></strong>
+<ul>
+<li><strong>Purpose</strong>: Entry point of the Spring Boot application.</li>
+<li><strong>Content</strong>:<pre class="hljs"><code><div><span class="hljs-keyword">package</span> com.yourdomain.yourproject;
+
+<span class="hljs-keyword">import</span> org.springframework.boot.SpringApplication;
+<span class="hljs-keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;
+
+<span class="hljs-meta">@SpringBootApplication</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">YourProjectApplication</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+        SpringApplication.run(YourProjectApplication<span class="hljs-class">.<span class="hljs-keyword">class</span>, <span class="hljs-title">args</span>)</span>;
+    }
+}
+</div></code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="22-models-entities"><strong>2.2. Models (Entities)</strong></h3>
+<h4 id="221-roomjava"><strong>2.2.1. <code>Room.java</code></strong></h4>
+<ul>
+<li><strong>Purpose</strong>: Represents a room where anonymous users can submit poll responses.</li>
+<li><strong>Fields</strong>:
+<ul>
+<li><code>id</code> (Long, primary key)</li>
+<li><code>name</code> (String)</li>
+<li><code>token</code> (UUID, unique identifier for the creator)</li>
+<li><code>pollResponses</code> (List<PollResponse>)</li>
+<li><code>createdAt</code> (Timestamp)</li>
+<li><code>closed</code> (Boolean)</li>
+<li><code>aggregatedResults</code> (String or a structured type like JSON)</li>
+</ul>
+</li>
+<li><strong>Content</strong>:<pre class="hljs"><code><div><span class="hljs-keyword">package</span> com.yourdomain.yourproject.model;
+
+<span class="hljs-keyword">import</span> javax.persistence.*;
+<span class="hljs-keyword">import</span> java.time.LocalDateTime;
+<span class="hljs-keyword">import</span> java.util.List;
+<span class="hljs-keyword">import</span> java.util.UUID;
+
+<span class="hljs-meta">@Entity</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Room</span> </span>{
+    <span class="hljs-meta">@Id</span>
+    <span class="hljs-meta">@GeneratedValue</span>(strategy = GenerationType.IDENTITY)
+    <span class="hljs-keyword">private</span> Long id;
+
+    <span class="hljs-keyword">private</span> String name;
+
+    <span class="hljs-meta">@Column</span>(unique = <span class="hljs-keyword">true</span>, nullable = <span class="hljs-keyword">false</span>)
+    <span class="hljs-keyword">private</span> UUID token;
+
+    <span class="hljs-meta">@OneToMany</span>(mappedBy = <span class="hljs-string">"room"</span>, cascade = CascadeType.ALL, orphanRemoval = <span class="hljs-keyword">true</span>)
+    <span class="hljs-keyword">private</span> List&lt;PollResponse&gt; pollResponses;
+
+    <span class="hljs-keyword">private</span> LocalDateTime createdAt = LocalDateTime.now();
+
+    <span class="hljs-keyword">private</span> Boolean closed = <span class="hljs-keyword">false</span>;
+
+    <span class="hljs-meta">@Lob</span>
+    <span class="hljs-keyword">private</span> String aggregatedResults;
+
+    <span class="hljs-comment">// Getters and Setters</span>
+}
+</div></code></pre>
+</li>
+</ul>
+<h4 id="222-pollresponsejava"><strong>2.2.2. <code>PollResponse.java</code></strong></h4>
+<ul>
+<li><strong>Purpose</strong>: Represents an anonymous poll response submitted by a user.</li>
+<li><strong>Fields</strong>:
+<ul>
+<li><code>id</code> (Long, primary key)</li>
+<li><code>room</code> (Room)</li>
+<li><code>happyFoods</code> (List<FoodItem>)</li>
+<li><code>sadFoods</code> (List<FoodItem>)</li>
+<li><code>submittedAt</code> (Timestamp)</li>
+</ul>
+</li>
+<li><strong>Content</strong>:<pre class="hljs"><code><div><span class="hljs-keyword">package</span> com.yourdomain.yourproject.model;
+
+<span class="hljs-keyword">import</span> javax.persistence.*;
+<span class="hljs-keyword">import</span> java.time.LocalDateTime;
+<span class="hljs-keyword">import</span> java.util.List;
+
+<span class="hljs-meta">@Entity</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PollResponse</span> </span>{
+    <span class="hljs-meta">@Id</span>
+    <span class="hljs-meta">@GeneratedValue</span>(strategy = GenerationType.IDENTITY)
+    <span class="hljs-keyword">private</span> Long id;
+
+    <span class="hljs-meta">@ManyToOne</span>
+    <span class="hljs-meta">@JoinColumn</span>(name = <span class="hljs-string">"room_id"</span>, nullable = <span class="hljs-keyword">false</span>)
+    <span class="hljs-keyword">private</span> Room room;
+
+    <span class="hljs-meta">@ManyToMany</span>
+    <span class="hljs-meta">@JoinTable</span>(
+        name = <span class="hljs-string">"poll_happy_foods"</span>,
+        joinColumns = <span class="hljs-meta">@JoinColumn</span>(name = <span class="hljs-string">"poll_id"</span>),
+        inverseJoinColumns = <span class="hljs-meta">@JoinColumn</span>(name = <span class="hljs-string">"food_id"</span>)
+    )
+    <span class="hljs-keyword">private</span> List&lt;FoodItem&gt; happyFoods;
+
+    <span class="hljs-meta">@ManyToMany</span>
+    <span class="hljs-meta">@JoinTable</span>(
+        name = <span class="hljs-string">"poll_sad_foods"</span>,
+        joinColumns = <span class="hljs-meta">@JoinColumn</span>(name = <span class="hljs-string">"poll_id"</span>),
+        inverseJoinColumns = <span class="hljs-meta">@JoinColumn</span>(name = <span class="hljs-string">"food_id"</span>)
+    )
+    <span class="hljs-keyword">private</span> List&lt;FoodItem&gt; sadFoods;
+
+    <span class="hljs-keyword">private</span> LocalDateTime submittedAt = LocalDateTime.now();
+
+    <span class="hljs-comment">// Getters and Setters</span>
+}
+</div></code></pre>
+</li>
+</ul>
+<h4 id="223-fooditemjava"><strong>2.2.3. <code>FoodItem.java</code></strong></h4>
+<ul>
+<li><strong>Purpose</strong>: Represents food items that can be categorized as happy (healthy) or sad (unhealthy).</li>
+<li><strong>Fields</strong>:
+<ul>
+<li><code>id</code> (Long, primary key)</li>
+<li><code>name</code> (String)</li>
+<li><code>type</code> (Enum: HAPPY or SAD)</li>
+</ul>
+</li>
+<li><strong>Content</strong>:<pre class="hljs"><code><div><span class="hljs-keyword">package</span> com.yourdomain.yourproject.model;
+
+<span class="hljs-keyword">import</span> javax.persistence.*;
+
+<span class="hljs-meta">@Entity</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FoodItem</span> </span>{
+    <span class="hljs-meta">@Id</span>
+    <span class="hljs-meta">@GeneratedValue</span>(strategy = GenerationType.IDENTITY)
+    <span class="hljs-keyword">private</span> Long id;
+
+    <span class="hljs-keyword">private</span> String name;
+
+    <span class="hljs-meta">@Enumerated</span>(EnumType.STRING)
+    <span class="hljs-keyword">private</span> FoodType type;
+
+    <span class="hljs-comment">// Getters and Setters</span>
+}
+
+<span class="hljs-keyword">enum</span> FoodType {
+    HAPPY,
+    SAD
+}
+</div></code></pre>
+</li>
+</ul>
+<h3 id="23-repositories"><strong>2.3. Repositories</strong></h3>
+<p>Repositories interface with the database, providing CRUD operations.</p>
+<h4 id="231-roomrepositoryjava"><strong>2.3.1. <code>RoomRepository.java</code></strong></h4>
+<pre class="hljs"><code><div><span class="hljs-keyword">package</span> com.yourdomain.yourproject.repository;
+
+<span class="hljs-keyword">import</span> com.yourdomain.yourproject.model.Room;
+<span class="hljs-keyword">import</span> org.springframework.data.jpa.repository.JpaRepository;
+<span class="hljs-keyword">import</span> java.util.Optional;
+<span class="hljs-keyword">import</span> java.util.UUID;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">RoomRepository</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">JpaRepository</span>&lt;<span class="hljs-title">Room</span>, <span class="hljs-title">Long</span>&gt; </span>{
+    <span class="hljs-function">Optional&lt;Room&gt; <span class="hljs-title">findByToken</span><span class="hljs-params">(UUID token)</span></span>;
+}
+</div></code></pre>
+<h4 id="232-pollresponserepositoryjava"><strong>2.3.2. <code>PollResponseRepository.java</code></strong></h4>
+<pre class="hljs"><code><div><span class="hljs-keyword">package</span> com.yourdomain.yourproject.repository;
+
+<span class="hljs-keyword">import</span> com.yourdomain.yourproject.model.PollResponse;
+<span class="hljs-keyword">import</span> com.yourdomain.yourproject.model.Room;
+<span class="hljs-keyword">import</span> org.springframework.data.jpa.repository.JpaRepository;
+<span class="hljs-keyword">import</span> java.util.List;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">PollResponseRepository</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">JpaRepository</span>&lt;<span class="hljs-title">PollResponse</span>, <span class="hljs-title">Long</span>&gt; </span>{
+    <span class="hljs-function">List&lt;PollResponse&gt; <span class="hljs-title">findByRoom</span><span class="hljs-params">(Room room)</span></span>;
+}
+</div></code></pre>
+<h4 id="233-fooditemrepositoryjava"><strong>2.3.3. <code>FoodItemRepository.java</code></strong></h4>
+<pre class="hljs"><code><div><span class="hljs-keyword">package</span> com.yourdomain.yourproject.repository;
+
+<span class="hljs-keyword">import</span> com.yourdomain.yourproject.model.FoodItem;
+<span class="hljs-keyword">import</span> com.yourdomain.yourproject.model.FoodType;
+<span class="hljs-keyword">import</span> org.springframework.data.jpa.repository.JpaRepository;
+<span class="hljs-keyword">import</span> java.util.List;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">FoodItemRepository</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">JpaRepository</span>&lt;<span class="hljs-title">FoodItem</span>, <span class="hljs-title">Long</span>&gt; </span>{
+    <span class="hljs-function">List&lt;FoodItem&gt; <span class="hljs-title">findByType</span><span class="hljs-params">(FoodType type)</span></span>;
+}
+</div></code></pre>
+<h3 id="24-dtos-data-transfer-objects"><strong>2.4. DTOs (Data Transfer Objects)</strong></h3>
+<p>DTOs help in transferring data between the client and server without exposing internal models.</p>
+<h4 id="241-roomdtojava"><strong>2.4.1. <code>RoomDTO.java</code></strong></h4>
+<pre class="hljs"><code><div><span class="hljs-keyword">package</span> com.yourdomain.yourproject.dto;
+
+<span class="hljs-keyword">import</span> java.util.UUID;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RoomDTO</span> </span>{
+    <span class="hljs-keyword">private</span> Long id;
+    <span class="hljs-keyword">private</span> String name;
+    <span class="hljs-keyword">private</span> UUID token;
+    <span class="hljs-keyword">private</span> Boolean closed;
+
+    <span class="hljs-comment">// Getters and Setters</span>
+}
+</div></code></pre>
+<h4 id="242-pollresponsedtojava"><strong>2.4.2. <code>PollResponseDTO.java</code></strong></h4>
+<pre class="hljs"><code><div><span class="hljs-keyword">package</span> com.yourdomain.yourproject.dto;
+
+<span class="hljs-keyword">import</span> java.util.List;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PollResponseDTO</span> </span>{
+    <span class="hljs-keyword">private</span> List&lt;Long&gt; happyFoodIds;
+    <span class="hljs-keyword">private</span> List&lt;Long&gt; sadFoodIds;
+
+    <span class="hljs-comment">// Getters and Setters</span>
+}
+</div></code></pre>
+<h3 id="25-services"><strong>2.5. Services</strong></h3>
+<p>Services contain the business logic and interact with repositories.</p>
+<h4 id="251-roomservicejava"><strong>2.5.1. <code>RoomService.java</code></strong></h4>
+<pre class="hljs"><code><div><span class="hljs-keyword">package</span> com.yourdomain.yourproject.service;
+
+<span class="hljs-keyword">import</span> com.yourdomain.yourproject.model.Room;
+<span class="hljs-keyword">import</span> com.yourdomain.yourproject.repository.RoomRepository;
+<span class="hljs-keyword">import</span> org.springframework.beans.factory.annotation.Autowired;
+<span class="hljs-keyword">import</span> org.springframework.stereotype.Service;
+<span class="hljs-keyword">import</span> java.util.Optional;
+<span class="hljs-keyword">import</span> java.util.UUID;
+
+<span class="hljs-meta">@Service</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RoomService</span> </span>{
+
+    <span class="hljs-meta">@Autowired</span>
+    <span class="hljs-keyword">private</span> RoomRepository roomRepository;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Room <span class="hljs-title">createRoom</span><span class="hljs-params">(String name)</span> </span>{
+        Room room = <span class="hljs-keyword">new</span> Room();
+        room.setName(name);
+        room.setToken(UUID.randomUUID());
+        room.setClosed(<span class="hljs-keyword">false</span>);
+        <span class="hljs-keyword">return</span> roomRepository.save(room);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Optional&lt;Room&gt; <span class="hljs-title">getRoomById</span><span class="hljs-params">(Long id)</span> </span>{
+        <span class="hljs-keyword">return</span> roomRepository.findById(id);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Optional&lt;Room&gt; <span class="hljs-title">getRoomByToken</span><span class="hljs-params">(UUID token)</span> </span>{
+        <span class="hljs-keyword">return</span> roomRepository.findByToken(token);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Room <span class="hljs-title">closeRoom</span><span class="hljs-params">(Room room, String aggregatedResults)</span> </span>{
+        room.setClosed(<span class="hljs-keyword">true</span>);
+        room.setAggregatedResults(aggregatedResults);
+        <span class="hljs-keyword">return</span> roomRepository.save(room);
+    }
+
+    <span class="hljs-comment">// Additional methods as needed</span>
+}
+</div></code></pre>
+<h4 id="252-pollservicejava"><strong>2.5.2. <code>PollService.java</code></strong></h4>
+<pre class="hljs"><code><div><span class="hljs-keyword">package</span> com.yourdomain.yourproject.service;
+
+<span class="hljs-keyword">import</span> com.yourdomain.yourproject.model.FoodItem;
+<span class="hljs-keyword">import</span> com.yourdomain.yourproject.model.PollResponse;
+<span class="hljs-keyword">import</span> com.yourdomain.yourproject.model.Room;
+<span class="hljs-keyword">import</span> com.yourdomain.yourproject.repository.FoodItemRepository;
+<span class="hljs-keyword">import</span> com.yourdomain.yourproject.repository.PollResponseRepository;
+<span class="hljs-keyword">import</span> org.springframework.beans.factory.annotation.Autowired;
+<span class="hljs-keyword">import</span> org.springframework.stereotype.Service;
+<span class="hljs-keyword">import</span> java.util.List;
+
+<span class="hljs-meta">@Service</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PollService</span> </span>{
+
+    <span class="hljs-meta">@Autowired</span>
+    <span class="hljs-keyword">private</span> PollResponseRepository pollResponseRepository;
+
+    <span class="hljs-meta">@Autowired</span>
+    <span class="hljs-keyword">private</span> FoodItemRepository foodItemRepository;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> PollResponse <span class="hljs-title">submitPollResponse</span><span class="hljs-params">(Room room, List&lt;Long&gt; happyFoodIds, List&lt;Long&gt; sadFoodIds)</span> </span>{
+        PollResponse response = <span class="hljs-keyword">new</span> PollResponse();
+        response.setRoom(room);
+        List&lt;FoodItem&gt; happyFoods = foodItemRepository.findAllById(happyFoodIds);
+        List&lt;FoodItem&gt; sadFoods = foodItemRepository.findAllById(sadFoodIds);
+        response.setHappyFoods(happyFoods);
+        response.setSadFoods(sadFoods);
+        <span class="hljs-keyword">return</span> pollResponseRepository.save(response);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> List&lt;PollResponse&gt; <span class="hljs-title">getPollResponses</span><span class="hljs-params">(Room room)</span> </span>{
+        <span class="hljs-keyword">return</span> pollResponseRepository.findByRoom(room);
+    }
+
+    <span class="hljs-comment">// Additional methods for aggregation</span>
+}
+</div></code></pre>
+<h3 id="26-controllers"><strong>2.6. Controllers</strong></h3>
+<p>Controllers handle HTTP requests and map them to services.</p>
+<h4 id="261-roomcontrollerjava"><strong>2.6.1. <code>RoomController.java</code></strong></h4>
+<pre class="hljs"><code><div><span class="hljs-keyword">package</span> com.yourdomain.yourproject.controller;
+
+<span class="hljs-keyword">import</span> com.yourdomain.yourproject.dto.RoomDTO;
+<span class="hljs-keyword">import</span> com.yourdomain.yourproject.model.Room;
+<span class="hljs-keyword">import</span> com.yourdomain.yourproject.service.RoomService;
+<span class="hljs-keyword">import</span> com.yourdomain.yourproject.util.MapperUtil;
+<span class="hljs-keyword">import</span> org.springframework.beans.factory.annotation.Autowired;
+<span class="hljs-keyword">import</span> org.springframework.http.ResponseEntity;
+<span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.*;
+<span class="hljs-keyword">import</span> java.util.UUID;
+
+<span class="hljs-meta">@RestController</span>
+<span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">"/api/rooms"</span>)
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RoomController</span> </span>{
+
+    <span class="hljs-meta">@Autowired</span>
+    <span class="hljs-keyword">private</span> RoomService roomService;
+
+    <span class="hljs-comment">/**
+     * Endpoint to create a new room.
+     * 
+     * <span class="hljs-doctag">@param</span> name Name of the room.
+     * <span class="hljs-doctag">@return</span> RoomDTO containing room details and token.
+     */</span>
+    <span class="hljs-meta">@PostMapping</span>(<span class="hljs-string">"/create"</span>)
+    <span class="hljs-function"><span class="hljs-keyword">public</span> ResponseEntity&lt;RoomDTO&gt; <span class="hljs-title">createRoom</span><span class="hljs-params">(@RequestParam String name)</span> </span>{
+        Room room = roomService.createRoom(name);
+        RoomDTO roomDTO = MapperUtil.toRoomDTO(room);
+        <span class="hljs-keyword">return</span> ResponseEntity.ok(roomDTO);
+    }
+
+    <span class="hljs-comment">/**
+     * Endpoint to close a room.
+     * 
+     * <span class="hljs-doctag">@param</span> token UUID token of the room creator.
+     * <span class="hljs-doctag">@return</span> Aggregated poll results.
+     */</span>
+    <span class="hljs-meta">@PostMapping</span>(<span class="hljs-string">"/close"</span>)
+    <span class="hljs-keyword">public</span> ResponseEntity&lt;?&gt; closeRoom(<span class="hljs-meta">@RequestParam</span> UUID token) {
+        Room room = roomService.getRoomByToken(token)
+                .orElseThrow(() -&gt; <span class="hljs-keyword">new</span> ResourceNotFoundException(<span class="hljs-string">"Room not found with token "</span> + token));
+
+        <span class="hljs-keyword">if</span> (room.getClosed()) {
+            <span class="hljs-keyword">return</span> ResponseEntity.badRequest().body(<span class="hljs-string">"Room is already closed."</span>);
+        }
+
+        <span class="hljs-comment">// Aggregate results</span>
+        String aggregatedResults = MapperUtil.aggregatePollResults(room.getPollResponses());
+
+        <span class="hljs-comment">// Close the room</span>
+        roomService.closeRoom(room, aggregatedResults);
+
+        <span class="hljs-keyword">return</span> ResponseEntity.ok(aggregatedResults);
+    }
+
+    <span class="hljs-comment">/**
+     * Endpoint to get room details.
+     * 
+     * <span class="hljs-doctag">@param</span> id Room ID.
+     * <span class="hljs-doctag">@return</span> RoomDTO containing room details.
+     */</span>
+    <span class="hljs-meta">@GetMapping</span>(<span class="hljs-string">"/{id}"</span>)
+    <span class="hljs-function"><span class="hljs-keyword">public</span> ResponseEntity&lt;RoomDTO&gt; <span class="hljs-title">getRoom</span><span class="hljs-params">(@PathVariable Long id)</span> </span>{
+        Room room = roomService.getRoomById(id)
+                .orElseThrow(() -&gt; <span class="hljs-keyword">new</span> ResourceNotFoundException(<span class="hljs-string">"Room not found with id "</span> + id));
+        RoomDTO roomDTO = MapperUtil.toRoomDTO(room);
+        <span class="hljs-keyword">return</span> ResponseEntity.ok(roomDTO);
+    }
+
+    <span class="hljs-comment">// Additional endpoints as needed</span>
+}
+</div></code></pre>
+<h4 id="262-pollcontrollerjava"><strong>2.6.2. <code>PollController.java</code></strong></h4>
+<pre class="hljs"><code><div><span class="hljs-keyword">package</span> com.yourdomain.yourproject.controller;
+
+<span class="hljs-keyword">import</span> com.yourdomain.yourproject.dto.PollResponseDTO;
+<span class="hljs-keyword">import</span> com.yourdomain.yourproject.model.PollResponse;
+<span class="hljs-keyword">import</span> com.yourdomain.yourproject.model.Room;
+<span class="hljs-keyword">import</span> com.yourdomain.yourproject.service.PollService;
+<span class="hljs-keyword">import</span> com.yourdomain.yourproject.service.RoomService;
+<span class="hljs-keyword">import</span> com.yourdomain.yourproject.util.MapperUtil;
+<span class="hljs-keyword">import</span> org.springframework.beans.factory.annotation.Autowired;
+<span class="hljs-keyword">import</span> org.springframework.http.ResponseEntity;
+<span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.*;
+<span class="hljs-keyword">import</span> java.util.UUID;
+
+<span class="hljs-meta">@RestController</span>
+<span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">"/api/polls"</span>)
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PollController</span> </span>{
+
+    <span class="hljs-meta">@Autowired</span>
+    <span class="hljs-keyword">private</span> PollService pollService;
+
+    <span class="hljs-meta">@Autowired</span>
+    <span class="hljs-keyword">private</span> RoomService roomService;
+
+    <span class="hljs-comment">/**
+     * Endpoint to submit a poll response.
+     * 
+     * <span class="hljs-doctag">@param</span> roomId ID of the room.
+     * <span class="hljs-doctag">@param</span> pollResponseDTO Poll response data.
+     * <span class="hljs-doctag">@return</span> Confirmation of submission.
+     */</span>
+    <span class="hljs-meta">@PostMapping</span>(<span class="hljs-string">"/submit"</span>)
+    <span class="hljs-keyword">public</span> ResponseEntity&lt;?&gt; submitPollResponse(
+            <span class="hljs-meta">@RequestParam</span> Long roomId,
+            <span class="hljs-meta">@RequestBody</span> PollResponseDTO pollResponseDTO) {
+
+        Room room = roomService.getRoomById(roomId)
+                .orElseThrow(() -&gt; <span class="hljs-keyword">new</span> ResourceNotFoundException(<span class="hljs-string">"Room not found with id "</span> + roomId));
+
+        <span class="hljs-keyword">if</span> (room.getClosed()) {
+            <span class="hljs-keyword">return</span> ResponseEntity.badRequest().body(<span class="hljs-string">"Cannot submit poll to a closed room."</span>);
+        }
+
+        PollResponse response = pollService.submitPollResponse(
+                room,
+                pollResponseDTO.getHappyFoodIds(),
+                pollResponseDTO.getSadFoodIds()
+        );
+
+        <span class="hljs-keyword">return</span> ResponseEntity.ok(<span class="hljs-string">"Poll response submitted successfully."</span>);
+    }
+
+    <span class="hljs-comment">/**
+     * (Optional) Endpoint to get aggregated results after closing the room.
+     * Since the room is closed via RoomController, this might not be necessary here.
+     */</span>
+
+    <span class="hljs-comment">// Additional endpoints as needed</span>
+}
+</div></code></pre>
+<h3 id="27-exception-handling"><strong>2.7. Exception Handling</strong></h3>
+<p>Proper exception handling ensures that your API responds gracefully to errors.</p>
+<h4 id="271-resourcenotfoundexceptionjava"><strong>2.7.1. <code>ResourceNotFoundException.java</code></strong></h4>
+<pre class="hljs"><code><div><span class="hljs-keyword">package</span> com.yourdomain.yourproject.exception;
+
+<span class="hljs-keyword">import</span> org.springframework.http.HttpStatus;
+<span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.ResponseStatus;
+
+<span class="hljs-meta">@ResponseStatus</span>(value = HttpStatus.NOT_FOUND)
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ResourceNotFoundException</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">RuntimeException</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">ResourceNotFoundException</span><span class="hljs-params">(String message)</span> </span>{
+        <span class="hljs-keyword">super</span>(message);
+    }
+}
+</div></code></pre>
+<h4 id="272-globalexceptionhandlerjava"><strong>2.7.2. <code>GlobalExceptionHandler.java</code></strong></h4>
+<pre class="hljs"><code><div><span class="hljs-keyword">package</span> com.yourdomain.yourproject.exception;
+
+<span class="hljs-keyword">import</span> org.springframework.http.HttpStatus;
+<span class="hljs-keyword">import</span> org.springframework.http.ResponseEntity;
+<span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.ControllerAdvice;
+<span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.ExceptionHandler;
+
+<span class="hljs-meta">@ControllerAdvice</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GlobalExceptionHandler</span> </span>{
+
+    <span class="hljs-meta">@ExceptionHandler</span>(ResourceNotFoundException<span class="hljs-class">.<span class="hljs-keyword">class</span>)
+    <span class="hljs-title">public</span> <span class="hljs-title">ResponseEntity</span>&lt;?&gt; <span class="hljs-title">handleResourceNotFoundException</span>(<span class="hljs-title">ResourceNotFoundException</span> <span class="hljs-title">ex</span>) </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ResponseEntity&lt;&gt;(ex.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
+    <span class="hljs-meta">@ExceptionHandler</span>(Exception<span class="hljs-class">.<span class="hljs-keyword">class</span>)
+    <span class="hljs-title">public</span> <span class="hljs-title">ResponseEntity</span>&lt;?&gt; <span class="hljs-title">handleGlobalException</span>(<span class="hljs-title">Exception</span> <span class="hljs-title">ex</span>) </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ResponseEntity&lt;&gt;(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    <span class="hljs-comment">// Additional handlers as needed</span>
+}
+</div></code></pre>
+<h3 id="28-utilities"><strong>2.8. Utilities</strong></h3>
+<h4 id="281-mapperutiljava"><strong>2.8.1. <code>MapperUtil.java</code></strong></h4>
+<pre class="hljs"><code><div><span class="hljs-keyword">package</span> com.yourdomain.yourproject.util;
+
+<span class="hljs-keyword">import</span> com.yourdomain.yourproject.dto.RoomDTO;
+<span class="hljs-keyword">import</span> com.yourdomain.yourproject.model.PollResponse;
+<span class="hljs-keyword">import</span> com.yourdomain.yourproject.model.Room;
+<span class="hljs-keyword">import</span> com.fasterxml.jackson.databind.ObjectMapper;
+<span class="hljs-keyword">import</span> com.fasterxml.jackson.databind.node.ObjectNode;
+
+<span class="hljs-keyword">import</span> java.util.List;
+<span class="hljs-keyword">import</span> java.util.Map;
+<span class="hljs-keyword">import</span> java.util.HashMap;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MapperUtil</span> </span>{
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> ObjectMapper mapper = <span class="hljs-keyword">new</span> ObjectMapper();
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> RoomDTO <span class="hljs-title">toRoomDTO</span><span class="hljs-params">(Room room)</span> </span>{
+        RoomDTO dto = <span class="hljs-keyword">new</span> RoomDTO();
+        dto.setId(room.getId());
+        dto.setName(room.getName());
+        dto.setToken(room.getToken());
+        dto.setClosed(room.getClosed());
+        <span class="hljs-keyword">return</span> dto;
+    }
+
+    <span class="hljs-comment">/**
+     * Aggregates poll responses to generate statistics.
+     * 
+     * <span class="hljs-doctag">@param</span> responses List of poll responses.
+     * <span class="hljs-doctag">@return</span> Aggregated results as a JSON string.
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title">aggregatePollResults</span><span class="hljs-params">(List&lt;PollResponse&gt; responses)</span> </span>{
+        Map&lt;String, Integer&gt; happyFoodCount = <span class="hljs-keyword">new</span> HashMap&lt;&gt;();
+        Map&lt;String, Integer&gt; sadFoodCount = <span class="hljs-keyword">new</span> HashMap&lt;&gt;();
+
+        <span class="hljs-keyword">for</span> (PollResponse response : responses) {
+            <span class="hljs-keyword">if</span> (response.getHappyFoods() != <span class="hljs-keyword">null</span>) {
+                response.getHappyFoods().forEach(food -&gt; 
+                    happyFoodCount.put(food.getName(), happyFoodCount.getOrDefault(food.getName(), <span class="hljs-number">0</span>) + <span class="hljs-number">1</span>)
+                );
+            }
+            <span class="hljs-keyword">if</span> (response.getSadFoods() != <span class="hljs-keyword">null</span>) {
+                response.getSadFoods().forEach(food -&gt; 
+                    sadFoodCount.put(food.getName(), sadFoodCount.getOrDefault(food.getName(), <span class="hljs-number">0</span>) + <span class="hljs-number">1</span>)
+                );
+            }
+        }
+
+        ObjectNode results = mapper.createObjectNode();
+        results.putPOJO(<span class="hljs-string">"happyFoods"</span>, happyFoodCount);
+        results.putPOJO(<span class="hljs-string">"sadFoods"</span>, sadFoodCount);
+
+        <span class="hljs-keyword">try</span> {
+            <span class="hljs-keyword">return</span> mapper.writerWithDefaultPrettyPrinter().writeValueAsString(results);
+        } <span class="hljs-keyword">catch</span> (Exception e) {
+            <span class="hljs-keyword">return</span> <span class="hljs-string">"{}"</span>; <span class="hljs-comment">// Return empty JSON in case of error</span>
+        }
+    }
+}
+</div></code></pre>
+<h3 id="29-application-properties"><strong>2.9. Application Properties</strong></h3>
+<h4 id="291-applicationproperties"><strong>2.9.1. <code>application.properties</code></strong></h4>
+<pre class="hljs"><code><div><span class="hljs-comment"># Server Configuration</span>
+<span class="hljs-meta">server.port</span>=<span class="hljs-string">8080</span>
+<span class="hljs-comment">
+# Database Configuration</span>
+<span class="hljs-meta">spring.datasource.url</span>=<span class="hljs-string">jdbc:mysql://localhost:3306/your_database?useSSL=false&amp;serverTimezone=UTC</span>
+<span class="hljs-meta">spring.datasource.username</span>=<span class="hljs-string">your_username</span>
+<span class="hljs-meta">spring.datasource.password</span>=<span class="hljs-string">your_password</span>
+<span class="hljs-meta">spring.jpa.hibernate.ddl-auto</span>=<span class="hljs-string">update</span>
+<span class="hljs-meta">spring.jpa.show-sql</span>=<span class="hljs-string">true</span>
+<span class="hljs-meta">spring.jpa.properties.hibernate.dialect</span>=<span class="hljs-string">org.hibernate.dialect.MySQL8Dialect</span>
+<span class="hljs-comment">
+# (Optional) Enable Swagger if you choose to integrate it later</span>
+<span class="hljs-comment"># spring.mvc.pathmatch.matching-strategy=ANT_PATH_MATCHER</span>
+</div></code></pre>
+<p><strong>Note</strong>: Replace <code>your_database</code>, <code>your_username</code>, and <code>your_password</code> with your actual database credentials. If you prefer PostgreSQL, adjust the JDBC URL and Hibernate dialect accordingly.</p>
+<h3 id="210-initial-data-setup"><strong>2.10. Initial Data Setup</strong></h3>
+<h4 id="2101-datasql"><strong>2.10.1. <code>data.sql</code></strong></h4>
+<pre class="hljs"><code><div><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> food_item (<span class="hljs-keyword">name</span>, <span class="hljs-keyword">type</span>) <span class="hljs-keyword">VALUES</span> 
+(<span class="hljs-string">'Apple'</span>, <span class="hljs-string">'HAPPY'</span>),
+(<span class="hljs-string">'Broccoli'</span>, <span class="hljs-string">'HAPPY'</span>),
+(<span class="hljs-string">'Carrot'</span>, <span class="hljs-string">'HAPPY'</span>),
+(<span class="hljs-string">'Chocolate'</span>, <span class="hljs-string">'SAD'</span>),
+(<span class="hljs-string">'Chips'</span>, <span class="hljs-string">'SAD'</span>),
+(<span class="hljs-string">'Soda'</span>, <span class="hljs-string">'SAD'</span>),
+(<span class="hljs-string">'Salad'</span>, <span class="hljs-string">'HAPPY'</span>),
+(<span class="hljs-string">'Candy'</span>, <span class="hljs-string">'SAD'</span>),
+(<span class="hljs-string">'Fish'</span>, <span class="hljs-string">'HAPPY'</span>),
+(<span class="hljs-string">'Ice Cream'</span>, <span class="hljs-string">'SAD'</span>);
+</div></code></pre>
+<p><strong>Note</strong>: Ensure that the <code>food_item</code> table is correctly named and that the <code>type</code> values correspond to the <code>FoodType</code> enum.</p>
+<h3 id="211-tests"><strong>2.11. Tests</strong></h3>
+<h4 id="2111-yourprojectapplicationtestsjava"><strong>2.11.1. <code>YourProjectApplicationTests.java</code></strong></h4>
+<pre class="hljs"><code><div><span class="hljs-keyword">package</span> com.yourdomain.yourproject;
+
+<span class="hljs-keyword">import</span> org.junit.jupiter.api.Test;
+<span class="hljs-keyword">import</span> org.springframework.boot.test.context.SpringBootTest;
+
+<span class="hljs-meta">@SpringBootTest</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">YourProjectApplicationTests</span> </span>{
+
+    <span class="hljs-meta">@Test</span>
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">contextLoads</span><span class="hljs-params">()</span> </span>{
+    }
+
+}
+</div></code></pre>
+<p><strong>Note</strong>: Expand test cases as you develop features to ensure code reliability.</p>
+<hr>
+<h2 id="3-development-steps"><strong>3. Development Steps</strong></h2>
+<h3 id="day-1-2-project-setup"><strong>Day 1-2: Project Setup</strong></h3>
+<ol>
+<li>
+<p><strong>Initialize Spring Boot Project</strong>:</p>
+<ul>
+<li>Use <a href="https://start.spring.io/">Spring Initializr</a> or your IDE to create a new Spring Boot project.</li>
+<li>Include dependencies:
+<ul>
+<li>Spring Web</li>
+<li>Spring Data JPA</li>
+<li>MySQL Driver (or PostgreSQL)</li>
+<li>Spring Boot DevTools (optional, for development convenience)</li>
+<li>(Optional) Lombok for boilerplate code reduction</li>
+</ul>
+</li>
+<li>Download and extract the project, then open it in your IDE.</li>
+</ul>
+</li>
+<li>
+<p><strong>Set Up Database</strong>:</p>
+<ul>
+<li>Install and configure MySQL/PostgreSQL.</li>
+<li>Create a new database for your project.</li>
+<li>Update <code>application.properties</code> with the correct database URL, username, and password.</li>
+<li>Test the connection by running the application and ensuring it starts without errors.</li>
+</ul>
+</li>
+<li>
+<p><strong>Create Initial Models and Repositories</strong>:</p>
+<ul>
+<li>Implement <code>Room</code>, <code>PollResponse</code>, and <code>FoodItem</code> entities.</li>
+<li>Create corresponding repositories.</li>
+<li>Ensure entities are correctly mapped and the application can perform CRUD operations.</li>
+</ul>
+</li>
+<li>
+<p><strong>Initialize Version Control</strong>:</p>
+<ul>
+<li>Initialize a Git repository.</li>
+<li>Make the initial commit with the project structure and initial configurations.</li>
+</ul>
+</li>
+</ol>
+<h3 id="day-3-4-core-features-development"><strong>Day 3-4: Core Features Development</strong></h3>
+<ol>
+<li>
+<p><strong>Implement Services</strong>:</p>
+<ul>
+<li>Develop <code>RoomService</code> and <code>PollService</code> with necessary business logic.</li>
+<li>Ensure services interact correctly with repositories.</li>
+</ul>
+</li>
+<li>
+<p><strong>Develop Controllers</strong>:</p>
+<ul>
+<li>Create <code>RoomController</code> and <code>PollController</code>.</li>
+<li>Implement endpoints for:
+<ul>
+<li>Creating a room.</li>
+<li>Closing a room.</li>
+<li>Submitting poll responses.</li>
+<li>Retrieving room details.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>DTOs and Mapping</strong>:</p>
+<ul>
+<li>Create DTO classes (<code>RoomDTO</code>, <code>PollResponseDTO</code>).</li>
+<li>Implement <code>MapperUtil</code> for converting entities to DTOs and vice versa.</li>
+<li>Ensure data is correctly transferred between client and server.</li>
+</ul>
+</li>
+<li>
+<p><strong>Exception Handling</strong>:</p>
+<ul>
+<li>Implement <code>ResourceNotFoundException</code> and <code>GlobalExceptionHandler</code>.</li>
+<li>Ensure meaningful error messages are returned to the client.</li>
+</ul>
+</li>
+<li>
+<p><strong>Initial Testing</strong>:</p>
+<ul>
+<li>Write basic tests to ensure services and controllers work as expected.</li>
+<li>Use tools like Postman to test API endpoints manually.</li>
+</ul>
+</li>
+</ol>
+<h3 id="day-5-6-implement-business-logic"><strong>Day 5-6: Implement Business Logic</strong></h3>
+<ol>
+<li>
+<p><strong>Poll Logic</strong>:</p>
+<ul>
+<li>Ensure that poll responses correctly associate happy and sad food items.</li>
+<li>Validate that only open rooms can accept poll submissions.</li>
+</ul>
+</li>
+<li>
+<p><strong>Result Aggregation</strong>:</p>
+<ul>
+<li>Implement aggregation logic in <code>MapperUtil</code> or a separate service.</li>
+<li>Ensure that the aggregation accurately counts the frequency of each food item in happy and sad categories.</li>
+</ul>
+</li>
+<li>
+<p><strong>Data Validation</strong>:</p>
+<ul>
+<li>Implement validation for incoming data using annotations like <code>@Valid</code>, <code>@NotNull</code>, etc.</li>
+<li>Handle invalid data gracefully with appropriate error messages.</li>
+</ul>
+</li>
+<li>
+<p><strong>Frontend Integration</strong>:</p>
+<ul>
+<li>Ensure that the backend APIs are compatible with the frontend requirements.</li>
+<li>Continue testing API endpoints using tools like Postman or Swagger UI.</li>
+</ul>
+</li>
+</ol>
+<h3 id="day-7-8-testing-and-refinement"><strong>Day 7-8: Testing and Refinement</strong></h3>
+<ol>
+<li>
+<p><strong>Unit and Integration Tests</strong>:</p>
+<ul>
+<li>Write comprehensive tests for services, repositories, and controllers.</li>
+<li>Use frameworks like JUnit and Mockito.</li>
+<li>Ensure high code coverage and reliability.</li>
+</ul>
+</li>
+<li>
+<p><strong>Refine Business Logic</strong>:</p>
+<ul>
+<li>Optimize aggregation methods.</li>
+<li>Ensure data consistency and integrity.</li>
+</ul>
+</li>
+<li>
+<p><strong>Code Review and Refactoring</strong>:</p>
+<ul>
+<li>Review code for best practices.</li>
+<li>Refactor any redundant or inefficient code.</li>
+<li>Ensure consistent coding standards and documentation.</li>
+</ul>
+</li>
+<li>
+<p><strong>Handle Edge Cases</strong>:</p>
+<ul>
+<li>Ensure that the application handles scenarios like closing an already closed room, submitting to a closed room, etc.</li>
+</ul>
+</li>
+</ol>
+<h3 id="day-9-deployment-preparation"><strong>Day 9: Deployment Preparation</strong></h3>
+<ol>
+<li>
+<p><strong>Production Configuration</strong>:</p>
+<ul>
+<li>Adjust <code>application.properties</code> for production settings.</li>
+<li>Ensure database connections are secure.</li>
+<li>Set <code>spring.jpa.hibernate.ddl-auto</code> to <code>validate</code> or <code>none</code> as appropriate.</li>
+</ul>
+</li>
+<li>
+<p><strong>Dockerize the Application (Optional)</strong>:</p>
+<ul>
+<li>Create a <code>Dockerfile</code> for the Spring Boot application.<pre class="hljs"><code><div><span class="hljs-keyword">FROM</span> openjdk:<span class="hljs-number">17</span>-jdk-alpine
+<span class="hljs-keyword">VOLUME</span><span class="bash"> /tmp</span>
+<span class="hljs-keyword">COPY</span><span class="bash"> target/yourproject.jar app.jar</span>
+<span class="hljs-keyword">ENTRYPOINT</span><span class="bash"> [<span class="hljs-string">"java"</span>,<span class="hljs-string">"-jar"</span>,<span class="hljs-string">"/app.jar"</span>]</span>
+</div></code></pre>
+</li>
+<li>Build the Docker image using <code>docker build -t yourproject .</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Build the Project</strong>:</p>
+<ul>
+<li>Run <code>mvn clean package</code> to build the application.</li>
+<li>Ensure the build is successful and the JAR is created.</li>
+</ul>
+</li>
+<li>
+<p><strong>Prepare for Deployment</strong>:</p>
+<ul>
+<li>Choose a deployment platform (e.g., Heroku, AWS Elastic Beanstalk, DigitalOcean).</li>
+<li>Configure environment variables and secrets securely.</li>
+<li>(Optional) Use Docker for containerized deployment.</li>
+</ul>
+</li>
+</ol>
+<h3 id="day-10-deployment-and-final-testing"><strong>Day 10: Deployment and Final Testing</strong></h3>
+<ol>
+<li>
+<p><strong>Deploy the Backend</strong>:</p>
+<ul>
+<li>Deploy the Spring Boot application to your chosen platform.</li>
+<li>Ensure the database is accessible and properly configured.</li>
+</ul>
+</li>
+<li>
+<p><strong>Final End-to-End Testing</strong>:</p>
+<ul>
+<li>Test all API endpoints in the production environment.</li>
+<li>Verify that the frontend can communicate with the backend seamlessly.</li>
+</ul>
+</li>
+<li>
+<p><strong>Monitor and Fix Issues</strong>:</p>
+<ul>
+<li>Monitor application logs for any errors.</li>
+<li>Address any bugs or performance issues promptly.</li>
+</ul>
+</li>
+<li>
+<p><strong>Documentation</strong>:</p>
+<ul>
+<li>Update <code>README.md</code> with setup instructions, API documentation, and any other relevant information.</li>
+<li>Document how to run tests and deploy the application.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="4-additional-recommendations"><strong>4. Additional Recommendations</strong></h2>
+<h3 id="41-use-lombok-for-boilerplate-code-reduction"><strong>4.1. Use Lombok for Boilerplate Code Reduction</strong></h3>
+<p>To reduce boilerplate code like getters, setters, constructors, etc., consider using <a href="https://projectlombok.org/">Lombok</a>.</p>
+<ul>
+<li><strong>Setup</strong>:
+<ul>
+<li>Add Lombok dependency to <code>pom.xml</code>:<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.projectlombok<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>lombok<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.18.24<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>provided<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+</div></code></pre>
+</li>
+<li>Annotate your models and DTOs with Lombok annotations:<pre class="hljs"><code><div><span class="hljs-keyword">import</span> lombok.Data;
+<span class="hljs-keyword">import</span> lombok.NoArgsConstructor;
+
+<span class="hljs-meta">@Data</span>
+<span class="hljs-meta">@NoArgsConstructor</span>
+<span class="hljs-meta">@Entity</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Room</span> </span>{
+    <span class="hljs-comment">// fields</span>
+}
+</div></code></pre>
+</li>
+<li>Ensure your IDE has Lombok support enabled.</li>
+</ul>
+</li>
+</ul>
+<h3 id="42-api-documentation-with-swagger"><strong>4.2. API Documentation with Swagger</strong></h3>
+<p>Integrate Swagger to automatically generate API documentation.</p>
+<ul>
+<li><strong>Setup</strong>:
+<ul>
+<li>Add Swagger dependencies to <code>pom.xml</code>:<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>io.springfox<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>springfox-boot-starter<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>3.0.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+</div></code></pre>
+</li>
+<li>Configure Swagger (if necessary).</li>
+<li>Access Swagger UI at <code>http://localhost:8080/swagger-ui/</code> after running the application.</li>
+</ul>
+</li>
+</ul>
+<h3 id="43-database-migration-with-flyway-or-liquibase"><strong>4.3. Database Migration with Flyway or Liquibase</strong></h3>
+<p>Use Flyway or Liquibase for managing database migrations.</p>
+<ul>
+<li><strong>Setup Flyway</strong>:
+<ul>
+<li>Add Flyway dependency to <code>pom.xml</code>:<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.flywaydb<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>flyway-core<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+</div></code></pre>
+</li>
+<li>Create migration scripts in <code>src/main/resources/db/migration/</code>.</li>
+<li>Example migration script <code>V1__Initial_setup.sql</code>:<pre class="hljs"><code><div><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> room (
+    <span class="hljs-keyword">id</span> <span class="hljs-built_in">BIGINT</span> AUTO_INCREMENT PRIMARY <span class="hljs-keyword">KEY</span>,
+    <span class="hljs-keyword">name</span> <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">255</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
+    token <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">36</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">UNIQUE</span>,
+    created_at <span class="hljs-built_in">TIMESTAMP</span>,
+    closed <span class="hljs-built_in">BOOLEAN</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">FALSE</span>,
+    aggregated_results <span class="hljs-built_in">TEXT</span>
+);
+
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> food_item (
+    <span class="hljs-keyword">id</span> <span class="hljs-built_in">BIGINT</span> AUTO_INCREMENT PRIMARY <span class="hljs-keyword">KEY</span>,
+    <span class="hljs-keyword">name</span> <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">255</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
+    <span class="hljs-keyword">type</span> <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">10</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>
+);
+
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> poll_response (
+    <span class="hljs-keyword">id</span> <span class="hljs-built_in">BIGINT</span> AUTO_INCREMENT PRIMARY <span class="hljs-keyword">KEY</span>,
+    room_id <span class="hljs-built_in">BIGINT</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
+    submitted_at <span class="hljs-built_in">TIMESTAMP</span>,
+    <span class="hljs-keyword">FOREIGN</span> <span class="hljs-keyword">KEY</span> (room_id) <span class="hljs-keyword">REFERENCES</span> room(<span class="hljs-keyword">id</span>)
+);
+
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> poll_happy_foods (
+    poll_id <span class="hljs-built_in">BIGINT</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
+    food_id <span class="hljs-built_in">BIGINT</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
+    PRIMARY <span class="hljs-keyword">KEY</span> (poll_id, food_id),
+    <span class="hljs-keyword">FOREIGN</span> <span class="hljs-keyword">KEY</span> (poll_id) <span class="hljs-keyword">REFERENCES</span> poll_response(<span class="hljs-keyword">id</span>),
+    <span class="hljs-keyword">FOREIGN</span> <span class="hljs-keyword">KEY</span> (food_id) <span class="hljs-keyword">REFERENCES</span> food_item(<span class="hljs-keyword">id</span>)
+);
+
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> poll_sad_foods (
+    poll_id <span class="hljs-built_in">BIGINT</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
+    food_id <span class="hljs-built_in">BIGINT</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
+    PRIMARY <span class="hljs-keyword">KEY</span> (poll_id, food_id),
+    <span class="hljs-keyword">FOREIGN</span> <span class="hljs-keyword">KEY</span> (poll_id) <span class="hljs-keyword">REFERENCES</span> poll_response(<span class="hljs-keyword">id</span>),
+    <span class="hljs-keyword">FOREIGN</span> <span class="hljs-keyword">KEY</span> (food_id) <span class="hljs-keyword">REFERENCES</span> food_item(<span class="hljs-keyword">id</span>)
+);
+
+<span class="hljs-comment">-- Insert initial food items</span>
+<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> food_item (<span class="hljs-keyword">name</span>, <span class="hljs-keyword">type</span>) <span class="hljs-keyword">VALUES</span> 
+(<span class="hljs-string">'Apple'</span>, <span class="hljs-string">'HAPPY'</span>),
+(<span class="hljs-string">'Broccoli'</span>, <span class="hljs-string">'HAPPY'</span>),
+(<span class="hljs-string">'Carrot'</span>, <span class="hljs-string">'HAPPY'</span>),
+(<span class="hljs-string">'Chocolate'</span>, <span class="hljs-string">'SAD'</span>),
+(<span class="hljs-string">'Chips'</span>, <span class="hljs-string">'SAD'</span>),
+(<span class="hljs-string">'Soda'</span>, <span class="hljs-string">'SAD'</span>),
+(<span class="hljs-string">'Salad'</span>, <span class="hljs-string">'HAPPY'</span>),
+(<span class="hljs-string">'Candy'</span>, <span class="hljs-string">'SAD'</span>),
+(<span class="hljs-string">'Fish'</span>, <span class="hljs-string">'HAPPY'</span>),
+(<span class="hljs-string">'Ice Cream'</span>, <span class="hljs-string">'SAD'</span>);
+</div></code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="44-logging-and-monitoring"><strong>4.4. Logging and Monitoring</strong></h3>
+<p>Implement comprehensive logging using frameworks like Logback or Log4j.</p>
+<ul>
+<li>
+<p><strong>Setup</strong>:</p>
+<ul>
+<li>Configure logging levels and appenders in <code>application.properties</code> or <code>logback-spring.xml</code>.</li>
+<li>Example <code>application.properties</code> logging configuration:<pre class="hljs"><code><div><span class="hljs-comment"># Logging Configuration</span>
+<span class="hljs-meta">logging.level.root</span>=<span class="hljs-string">INFO</span>
+<span class="hljs-meta">logging.level.com.yourdomain.yourproject</span>=<span class="hljs-string">DEBUG</span>
+<span class="hljs-meta">logging.file.name</span>=<span class="hljs-string">yourproject.log</span>
+</div></code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Monitoring</strong>:</p>
+<ul>
+<li>Integrate monitoring tools like Spring Boot Actuator for health checks and metrics.</li>
+<li>Add Actuator dependency:<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-actuator<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+</div></code></pre>
+</li>
+<li>Access Actuator endpoints at <code>http://localhost:8080/actuator</code>.</li>
+</ul>
+</li>
+</ul>
+<h3 id="45-optimize-performance"><strong>4.5. Optimize Performance</strong></h3>
+<ul>
+<li>
+<p><strong>Caching</strong>:</p>
+<ul>
+<li>Implement caching for frequently accessed data using Spring Cache.</li>
+<li>Add caching dependency:<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-cache<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+</div></code></pre>
+</li>
+<li>Enable caching in <code>YourProjectApplication.java</code>:<pre class="hljs"><code><div><span class="hljs-meta">@SpringBootApplication</span>
+<span class="hljs-meta">@EnableCaching</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">YourProjectApplication</span> </span>{ ... }
+</div></code></pre>
+</li>
+<li>Use caching annotations like <code>@Cacheable</code>, <code>@CachePut</code>, and <code>@CacheEvict</code> in services.</li>
+</ul>
+</li>
+<li>
+<p><strong>Database Indexing</strong>:</p>
+<ul>
+<li>Ensure that database tables have appropriate indexes to speed up queries.</li>
+<li>Example: Index the <code>token</code> field in the <code>room</code> table.</li>
+</ul>
+</li>
+</ul>
+<h3 id="46-security-enhancements"><strong>4.6. Security Enhancements</strong></h3>
+<p>Even though authentication is not required, it's essential to secure your application against common vulnerabilities.</p>
+<ul>
+<li>
+<p><strong>Input Validation</strong>:</p>
+<ul>
+<li>Use validation annotations like <code>@Valid</code>, <code>@NotNull</code>, <code>@Size</code>, etc., to validate incoming data.</li>
+<li>Example in <code>PollController</code>:<pre class="hljs"><code><div><span class="hljs-meta">@PostMapping</span>(<span class="hljs-string">"/submit"</span>)
+<span class="hljs-keyword">public</span> ResponseEntity&lt;?&gt; submitPollResponse(
+        <span class="hljs-meta">@RequestParam</span> Long roomId,
+        <span class="hljs-meta">@Valid</span> <span class="hljs-meta">@RequestBody</span> PollResponseDTO pollResponseDTO) {
+    <span class="hljs-comment">// ...</span>
+}
+</div></code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Preventing SQL Injection</strong>:</p>
+<ul>
+<li>Use parameterized queries and avoid constructing queries manually.</li>
+<li>Spring Data JPA handles this by default.</li>
+</ul>
+</li>
+<li>
+<p><strong>Cross-Origin Resource Sharing (CORS)</strong>:</p>
+<ul>
+<li>Configure CORS to allow requests from your frontend domain.</li>
+<li>Example in <code>RoomController.java</code>:<pre class="hljs"><code><div><span class="hljs-meta">@CrossOrigin</span>(origins = <span class="hljs-string">"http://your-frontend-domain.com"</span>)
+<span class="hljs-meta">@RestController</span>
+<span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">"/api/rooms"</span>)
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RoomController</span> </span>{ ... }
+</div></code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Rate Limiting (Optional)</strong>:</p>
+<ul>
+<li>Implement rate limiting to prevent abuse using libraries like Bucket4j.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="5-sample-code-snippets"><strong>5. Sample Code Snippets</strong></h2>
+<h3 id="51-creating-a-room"><strong>5.1. Creating a Room</strong></h3>
+<p><strong>Endpoint</strong>: <code>POST /api/rooms/create</code></p>
+<p><strong>Request Parameters</strong>:</p>
+<ul>
+<li><code>name</code>: Name of the room.</li>
+</ul>
+<p><strong>Response</strong>:</p>
+<ul>
+<li><code>RoomDTO</code> containing room details and token.</li>
+</ul>
+<p><strong>Controller Method</strong>:</p>
+<pre class="hljs"><code><div><span class="hljs-meta">@PostMapping</span>(<span class="hljs-string">"/create"</span>)
+<span class="hljs-function"><span class="hljs-keyword">public</span> ResponseEntity&lt;RoomDTO&gt; <span class="hljs-title">createRoom</span><span class="hljs-params">(@RequestParam String name)</span> </span>{
+    Room room = roomService.createRoom(name);
+    RoomDTO roomDTO = MapperUtil.toRoomDTO(room);
+    <span class="hljs-keyword">return</span> ResponseEntity.ok(roomDTO);
+}
+</div></code></pre>
+<p><strong>Sample Response</strong>:</p>
+<pre class="hljs"><code><div>{
+    <span class="hljs-attr">"id"</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-attr">"name"</span>: <span class="hljs-string">"Healthy Eating Room"</span>,
+    <span class="hljs-attr">"token"</span>: <span class="hljs-string">"123e4567-e89b-12d3-a456-426614174000"</span>,
+    <span class="hljs-attr">"closed"</span>: <span class="hljs-literal">false</span>
+}
+</div></code></pre>
+<h3 id="52-submitting-a-poll-response"><strong>5.2. Submitting a Poll Response</strong></h3>
+<p><strong>Endpoint</strong>: <code>POST /api/polls/submit</code></p>
+<p><strong>Request Parameters</strong>:</p>
+<ul>
+<li><code>roomId</code>: ID of the room.</li>
+</ul>
+<p><strong>Request Body</strong>:</p>
+<pre class="hljs"><code><div>{
+    <span class="hljs-attr">"happyFoodIds"</span>: [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>],
+    <span class="hljs-attr">"sadFoodIds"</span>: [<span class="hljs-number">4</span>, <span class="hljs-number">5</span>]
+}
+</div></code></pre>
+<p><strong>Controller Method</strong>:</p>
+<pre class="hljs"><code><div><span class="hljs-meta">@PostMapping</span>(<span class="hljs-string">"/submit"</span>)
+<span class="hljs-keyword">public</span> ResponseEntity&lt;?&gt; submitPollResponse(
+        <span class="hljs-meta">@RequestParam</span> Long roomId,
+        <span class="hljs-meta">@Valid</span> <span class="hljs-meta">@RequestBody</span> PollResponseDTO pollResponseDTO) {
+
+    Room room = roomService.getRoomById(roomId)
+            .orElseThrow(() -&gt; <span class="hljs-keyword">new</span> ResourceNotFoundException(<span class="hljs-string">"Room not found with id "</span> + roomId));
+
+    <span class="hljs-keyword">if</span> (room.getClosed()) {
+        <span class="hljs-keyword">return</span> ResponseEntity.badRequest().body(<span class="hljs-string">"Cannot submit poll to a closed room."</span>);
+    }
+
+    PollResponse response = pollService.submitPollResponse(
+            room,
+            pollResponseDTO.getHappyFoodIds(),
+            pollResponseDTO.getSadFoodIds()
+    );
+
+    <span class="hljs-keyword">return</span> ResponseEntity.ok(<span class="hljs-string">"Poll response submitted successfully."</span>);
+}
+</div></code></pre>
+<p><strong>Sample Response</strong>:</p>
+<pre class="hljs"><code><div>{
+    <span class="hljs-attr">"message"</span>: <span class="hljs-string">"Poll response submitted successfully."</span>
+}
+</div></code></pre>
+<h3 id="53-closing-a-room-and-aggregating-results"><strong>5.3. Closing a Room and Aggregating Results</strong></h3>
+<p><strong>Endpoint</strong>: <code>POST /api/rooms/close</code></p>
+<p><strong>Request Parameters</strong>:</p>
+<ul>
+<li><code>token</code>: UUID token of the room creator.</li>
+</ul>
+<p><strong>Controller Method</strong>:</p>
+<pre class="hljs"><code><div><span class="hljs-meta">@PostMapping</span>(<span class="hljs-string">"/close"</span>)
+<span class="hljs-keyword">public</span> ResponseEntity&lt;?&gt; closeRoom(<span class="hljs-meta">@RequestParam</span> UUID token) {
+    Room room = roomService.getRoomByToken(token)
+            .orElseThrow(() -&gt; <span class="hljs-keyword">new</span> ResourceNotFoundException(<span class="hljs-string">"Room not found with token "</span> + token));
+
+    <span class="hljs-keyword">if</span> (room.getClosed()) {
+        <span class="hljs-keyword">return</span> ResponseEntity.badRequest().body(<span class="hljs-string">"Room is already closed."</span>);
+    }
+
+    <span class="hljs-comment">// Aggregate results</span>
+    String aggregatedResults = MapperUtil.aggregatePollResults(room.getPollResponses());
+
+    <span class="hljs-comment">// Close the room</span>
+    roomService.closeRoom(room, aggregatedResults);
+
+    <span class="hljs-keyword">return</span> ResponseEntity.ok(aggregatedResults);
+}
+</div></code></pre>
+<p><strong>Sample Response</strong>:</p>
+<pre class="hljs"><code><div>{
+    <span class="hljs-attr">"happyFoods"</span>: {
+        <span class="hljs-attr">"Apple"</span>: <span class="hljs-number">10</span>,
+        <span class="hljs-attr">"Broccoli"</span>: <span class="hljs-number">5</span>,
+        <span class="hljs-attr">"Carrot"</span>: <span class="hljs-number">7</span>
+    },
+    <span class="hljs-attr">"sadFoods"</span>: {
+        <span class="hljs-attr">"Chocolate"</span>: <span class="hljs-number">8</span>,
+        <span class="hljs-attr">"Chips"</span>: <span class="hljs-number">6</span>,
+        <span class="hljs-attr">"Soda"</span>: <span class="hljs-number">4</span>
+    }
+}
+</div></code></pre>
+<h3 id="54-aggregating-poll-results"><strong>5.4. Aggregating Poll Results</strong></h3>
+<p><strong>Service Method in <code>PollService.java</code></strong>:</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">aggregatePollResults</span><span class="hljs-params">(List&lt;PollResponse&gt; responses)</span> </span>{
+    Map&lt;String, Integer&gt; happyFoodCount = <span class="hljs-keyword">new</span> HashMap&lt;&gt;();
+    Map&lt;String, Integer&gt; sadFoodCount = <span class="hljs-keyword">new</span> HashMap&lt;&gt;();
+
+    <span class="hljs-keyword">for</span> (PollResponse response : responses) {
+        <span class="hljs-keyword">if</span> (response.getHappyFoods() != <span class="hljs-keyword">null</span>) {
+            response.getHappyFoods().forEach(food -&gt; 
+                happyFoodCount.put(food.getName(), happyFoodCount.getOrDefault(food.getName(), <span class="hljs-number">0</span>) + <span class="hljs-number">1</span>)
+            );
+        }
+        <span class="hljs-keyword">if</span> (response.getSadFoods() != <span class="hljs-keyword">null</span>) {
+            response.getSadFoods().forEach(food -&gt; 
+                sadFoodCount.put(food.getName(), sadFoodCount.getOrDefault(food.getName(), <span class="hljs-number">0</span>) + <span class="hljs-number">1</span>)
+            );
+        }
+    }
+
+    ObjectNode results = mapper.createObjectNode();
+    results.putPOJO(<span class="hljs-string">"happyFoods"</span>, happyFoodCount);
+    results.putPOJO(<span class="hljs-string">"sadFoods"</span>, sadFoodCount);
+
+    <span class="hljs-keyword">try</span> {
+        <span class="hljs-keyword">return</span> mapper.writerWithDefaultPrettyPrinter().writeValueAsString(results);
+    } <span class="hljs-keyword">catch</span> (Exception e) {
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"{}"</span>; <span class="hljs-comment">// Return empty JSON in case of error</span>
+    }
+}
+</div></code></pre>
+<p><strong>Explanation</strong>:</p>
+<ul>
+<li>Iterates through all poll responses.</li>
+<li>Counts the occurrences of each happy and sad food item.</li>
+<li>Aggregates the counts into a JSON structure.</li>
+</ul>
+<h3 id="55-mapper-utility-for-aggregation"><strong>5.5. Mapper Utility for Aggregation</strong></h3>
+<p><strong><code>MapperUtil.java</code></strong></p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title">aggregatePollResults</span><span class="hljs-params">(List&lt;PollResponse&gt; responses)</span> </span>{
+    Map&lt;String, Integer&gt; happyFoodCount = <span class="hljs-keyword">new</span> HashMap&lt;&gt;();
+    Map&lt;String, Integer&gt; sadFoodCount = <span class="hljs-keyword">new</span> HashMap&lt;&gt;();
+
+    <span class="hljs-keyword">for</span> (PollResponse response : responses) {
+        <span class="hljs-keyword">if</span> (response.getHappyFoods() != <span class="hljs-keyword">null</span>) {
+            response.getHappyFoods().forEach(food -&gt; 
+                happyFoodCount.put(food.getName(), happyFoodCount.getOrDefault(food.getName(), <span class="hljs-number">0</span>) + <span class="hljs-number">1</span>)
+            );
+        }
+        <span class="hljs-keyword">if</span> (response.getSadFoods() != <span class="hljs-keyword">null</span>) {
+            response.getSadFoods().forEach(food -&gt; 
+                sadFoodCount.put(food.getName(), sadFoodCount.getOrDefault(food.getName(), <span class="hljs-number">0</span>) + <span class="hljs-number">1</span>)
+            );
+        }
+    }
+
+    ObjectNode results = mapper.createObjectNode();
+    results.putPOJO(<span class="hljs-string">"happyFoods"</span>, happyFoodCount);
+    results.putPOJO(<span class="hljs-string">"sadFoods"</span>, sadFoodCount);
+
+    <span class="hljs-keyword">try</span> {
+        <span class="hljs-keyword">return</span> mapper.writerWithDefaultPrettyPrinter().writeValueAsString(results);
+    } <span class="hljs-keyword">catch</span> (Exception e) {
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"{}"</span>; <span class="hljs-comment">// Return empty JSON in case of error</span>
+    }
+}
+</div></code></pre>
+<p><strong>Note</strong>: Ensure that Jackson's <code>ObjectMapper</code> is properly configured and imported.</p>
+<hr>
+<h2 id="6-tools-and-libraries"><strong>6. Tools and Libraries</strong></h2>
+<ul>
+<li><strong>Build Tool</strong>: Maven</li>
+<li><strong>Java Version</strong>: 17 or latest LTS</li>
+<li><strong>Database</strong>: MySQL or PostgreSQL</li>
+<li><strong>ORM</strong>: Hibernate (via Spring Data JPA)</li>
+<li><strong>Validation</strong>: Hibernate Validator</li>
+<li><strong>Testing</strong>: JUnit, Mockito</li>
+<li><strong>Documentation</strong>: Swagger</li>
+<li><strong>Boilerplate Reduction</strong>: Lombok (optional)</li>
+<li><strong>Logging</strong>: Logback (default with Spring Boot)</li>
+<li><strong>Monitoring</strong>: Spring Boot Actuator (optional)</li>
+</ul>
+<hr>
+<h2 id="7-final-tips"><strong>7. Final Tips</strong></h2>
+<ol>
+<li>
+<p><strong>Prioritize Core Features</strong>: Focus on implementing the essential functionalities first:</p>
+<ul>
+<li>Room creation with token generation.</li>
+<li>Poll submission by anonymous users.</li>
+<li>Room closure with result aggregation.</li>
+</ul>
+</li>
+<li>
+<p><strong>Use Agile Methodology</strong>: Break down tasks into daily sprints. At the end of each day, review progress and adjust the plan as needed.</p>
+</li>
+<li>
+<p><strong>Leverage Spring Boot Starters</strong>: Utilize Spring Boot starters to quickly add functionalities without manual configurations.</p>
+</li>
+<li>
+<p><strong>Automate Repetitive Tasks</strong>: Use scripts or Maven plugins to automate builds, tests, and deployments.</p>
+</li>
+<li>
+<p><strong>Stay Consistent</strong>: Maintain consistent coding standards and practices throughout the project to enhance readability and maintainability.</p>
+</li>
+<li>
+<p><strong>Backup Regularly</strong>: Commit code frequently to your Git repository to prevent loss of work.</p>
+</li>
+<li>
+<p><strong>Communicate Clearly</strong>: If collaborating with others, ensure clear communication regarding tasks, progress, and any blockers.</p>
+</li>
+<li>
+<p><strong>Optimize Time</strong>: Given the 10-day timeframe, avoid feature creep. Focus on delivering a Minimum Viable Product (MVP) that meets all essential requirements.</p>
+</li>
+<li>
+<p><strong>Test Extensively</strong>: Ensure that all endpoints work as expected. Use tools like Postman for manual testing and write automated tests for critical components.</p>
+</li>
+<li>
+<p><strong>Prepare for Deployment Early</strong>: Familiarize yourself with your chosen deployment platform to streamline the deployment process.</p>
+</li>
+</ol>
+<hr>
+<h2 id="8-example-workflow"><strong>8. Example Workflow</strong></h2>
+<ol>
+<li>
+<p><strong>Room Creation</strong>:</p>
+<ul>
+<li><strong>Client</strong> sends a <code>POST</code> request to <code>/api/rooms/create</code> with the room name.</li>
+<li><strong>Server</strong> generates a UUID token, creates a new room in the database, and returns the room details along with the token.</li>
+</ul>
+</li>
+<li>
+<p><strong>Poll Submission</strong>:</p>
+<ul>
+<li><strong>Anonymous User</strong> submits a poll by sending a <code>POST</code> request to <code>/api/polls/submit</code> with the <code>roomId</code> and selected <code>happyFoodIds</code> and <code>sadFoodIds</code>.</li>
+<li><strong>Server</strong> validates the room status, saves the poll response, and confirms the submission.</li>
+</ul>
+</li>
+<li>
+<p><strong>Room Closure and Result Retrieval</strong>:</p>
+<ul>
+<li><strong>Creator</strong> sends a <code>POST</code> request to <code>/api/rooms/close</code> with the <code>token</code>.</li>
+<li><strong>Server</strong> verifies the token, aggregates poll responses, marks the room as closed, and returns the aggregated results.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="9-sample-api-calls-using-curl"><strong>9. Sample API Calls Using cURL</strong></h2>
+<h3 id="91-create-a-room"><strong>9.1. Create a Room</strong></h3>
+<pre class="hljs"><code><div>curl -X POST <span class="hljs-string">"http://localhost:8080/api/rooms/create?name=Healthy%20Eating%20Room"</span> -H <span class="hljs-string">"Content-Type: application/json"</span>
+</div></code></pre>
+<p><strong>Sample Response</strong>:</p>
+<pre class="hljs"><code><div>{
+    <span class="hljs-attr">"id"</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-attr">"name"</span>: <span class="hljs-string">"Healthy Eating Room"</span>,
+    <span class="hljs-attr">"token"</span>: <span class="hljs-string">"123e4567-e89b-12d3-a456-426614174000"</span>,
+    <span class="hljs-attr">"closed"</span>: <span class="hljs-literal">false</span>
+}
+</div></code></pre>
+<h3 id="92-submit-a-poll-response"><strong>9.2. Submit a Poll Response</strong></h3>
+<pre class="hljs"><code><div>curl -X POST <span class="hljs-string">"http://localhost:8080/api/polls/submit?roomId=1"</span> \
+     -H <span class="hljs-string">"Content-Type: application/json"</span> \
+     -d <span class="hljs-string">'{
+           "happyFoodIds": [1, 2, 3],
+           "sadFoodIds": [4, 5]
+         }'</span>
+</div></code></pre>
+<p><strong>Sample Response</strong>:</p>
+<pre class="hljs"><code><div>{
+    <span class="hljs-attr">"message"</span>: <span class="hljs-string">"Poll response submitted successfully."</span>
+}
+</div></code></pre>
+<h3 id="93-close-a-room-and-get-results"><strong>9.3. Close a Room and Get Results</strong></h3>
+<pre class="hljs"><code><div>curl -X POST <span class="hljs-string">"http://localhost:8080/api/rooms/close?token=123e4567-e89b-12d3-a456-426614174000"</span> -H <span class="hljs-string">"Content-Type: application/json"</span>
+</div></code></pre>
+<p><strong>Sample Response</strong>:</p>
+<pre class="hljs"><code><div>{
+    <span class="hljs-attr">"happyFoods"</span>: {
+        <span class="hljs-attr">"Apple"</span>: <span class="hljs-number">10</span>,
+        <span class="hljs-attr">"Broccoli"</span>: <span class="hljs-number">5</span>,
+        <span class="hljs-attr">"Carrot"</span>: <span class="hljs-number">7</span>
+    },
+    <span class="hljs-attr">"sadFoods"</span>: {
+        <span class="hljs-attr">"Chocolate"</span>: <span class="hljs-number">8</span>,
+        <span class="hljs-attr">"Chips"</span>: <span class="hljs-number">6</span>,
+        <span class="hljs-attr">"Soda"</span>: <span class="hljs-number">4</span>
+    }
+}
+</div></code></pre>
+<hr>
+<h2 id="10-conclusion"><strong>10. Conclusion</strong></h2>
+<p>By following this updated backend plan, you can efficiently develop a robust and functional backend for your mini web application within the 10-day timeframe. The simplified architecture, focusing on <strong>Rooms</strong>, <strong>Poll Responses</strong>, and <strong>Food Items</strong>, aligns well with your requirements and ensures quick development without the overhead of authentication mechanisms.</p>
+<p><strong>Key Takeaways</strong>:</p>
+<ul>
+<li><strong>Simplicity</strong>: With no authentication, the focus remains on core functionalities.</li>
+<li><strong>Scalability</strong>: The architecture allows for easy scaling and future enhancements.</li>
+<li><strong>Maintainability</strong>: Clear separation of concerns through models, services, controllers, and utilities.</li>
+<li><strong>Efficiency</strong>: Leveraging Spring Boot's features accelerates development.</li>
+</ul>
+<p>Good luck with your project! If you encounter any challenges or need further assistance, feel free to ask.</p>
+
+</body>
+</html>
