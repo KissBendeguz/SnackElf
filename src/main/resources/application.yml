@@ -1,0 +1,22 @@
+server:
+  port: 3001
+
+spring:
+  datasource:
+    platform: mysql
+    url: jdbc:mysql://localhost:3306/snackelf
+    username: root
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: true
+    show-sql: false
+  main:
+    web-application-type: servlet
+  logging:
+    level:
+      org.springframework.security: DEBUG
